@@ -18,7 +18,7 @@ function meanMedianMode(array) {
  }
   
  function getMedian(array) {
-   array.sort(function(a, b){return a-b});
+   array.sort(function(a, b){return a-b}); //sort in an ascending order 
    var median;
    
    if (array.length % 2 !== 0) {
@@ -42,9 +42,11 @@ function meanMedianMode(array) {
      modeObj[num]++;
    });
    
+   console.log(modeObj);
    // create array of mode/s 
    var maxFrequency = 0;
    var modes = [];
+   //for in loop access object property names of  an object
    for (var num in modeObj) {
      if (modeObj[num] > maxFrequency) {
        modes = [num];
