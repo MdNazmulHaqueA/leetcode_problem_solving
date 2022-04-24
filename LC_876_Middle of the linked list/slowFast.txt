@@ -1,0 +1,110 @@
+Fast and slow pointer technique in Linked List which is also known as tortoise and hare algorithm. It is used to efficiently solve several problems by using two pointers.
+
+
+Fast and slow pointer technique in Linked List
+Problem 1: Middle of Linked List
+Problem 2: Detect Cycle in Linked List
+
+
+
+The fast and slow pointer technique (also known as the tortoise and hare algorithm) uses two pointers to determine traits about directional data structures. This can be an array, singly-linked list, or a graph. It is often applied to determine if there are any cycles in the data structure and is therefore also known as Floyd’s Cycle Detection Algorithm.
+
+Slow pointer and fast pointer are simply the names given to two pointer variables. The only difference is that, slow pointer travels the linked list one node at a time where as a fast pointer travels the linked list two nodes at a time.
+
+This concept can be used in cases like detecting a loop in a graph, finding the middle node of a linked list (better time complexity), flattening a linked list etc. All these examples use the idea of slow and fast pointers.
+
+
+Think of tortoise and a hare running on a track.
+The faster running hare will catch up with the tortoise if track is like loop.
+Suppose the question is:
+Check whether the linked list ends in a loop.
+This problem can be solved by slowptr and fastptr.
+Think of like slowptr(tortoise) moves one pointer at a time and fastptr(hare) moves two pointer at a time.
+
+
+To implement this algorithm, the two pointers will start at a location (the head node in the case of determining cycles in a linked list). Then, with each iteration, the two pointers will be advanced at different rates. Usually, the slow pointer will move ahead one step while the fast pointer moves ahead two. Though they are free to move at any rate as long as the rates are different.
+
+Implementation of Fast and slow pointer technique in Linked List:
+
+
+public Node middleNodeOfList(Node head) {
+    
+    Node slow = head, fast = head;
+
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        // Add Logic for problem at hand
+        // ...
+    }
+    // Add Logic for problem at hand
+    // ...
+}
+
+
+Now for detecting a cyclic list, sooner or later, both pointers will meet at the same node. If they never meet then there is no cycle. This is because the distance between the two pointers increases by a set amount after every iteration. When the distance becomes the same as the length of the list, they meet because they are moving in a cycle.
+
+
+
+Problem 1: Middle of Linked List
+Brute force technique: O(N + N/2)
+
+First find out the length of the linked list. This operation takes O(N) time if there are N nodes in the list.
+
+Then, find out the Middle Node Index as (length_of_list/2). There are two scenarios, the list has either odd or even number of nodes in the list.
+Now you can easily move your pointer to the Middle Node Index.
+
+As we know, we cannot directly access a Node at an index in Linked List, similar to how we do it in an Array.
+
+This is where the Slow and Fast Pointers come in. Basically, the idea is to to move the two pointers at different rates. For example:
+
+slow = slow + 1 => slow = slow.next (in Linked List terms)
+fast = fast + 2 => fast = fast.next.next (in Linked List terms)
+
+Both the pointers start at the head of the Linked List.
+List 1 (Odd numbers of nodes): 1 -> 2 -> 3 -> 4 -> 5
+List 2 (Even numbers of nodes): 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null. Assuming that in case of even number of nodes in list there could be two possible middle nodes (3 & 4). We want to return the second one i.e 4.
+
+Example implementation:
+
+public Node middleNodeOfList(Node head) {
+    
+    Node slow = head, fast = head;
+    
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+
+
+Now, use your two index fingers one as Slow and one as Fast pointer on the above list and keep iterating as slow = slow.next and fast = fast.next.next. You will notice that when the fast pointer reaches the last node (in case of odd list) and the "null" (in case of even list), the slow pointer will be pointing to the middle fo the Linked list.
+
+
+Problem 2: Detect Cycle in Linked List
+This is a well known problem that can be used with the Slow-Fast pointer approach. The idea behind detecting a cycle in linked list is this:
+
+you move the slow and fast pointer at this rates: slow = slow + 1 and fast = fast + 2 , with each iteration i.e Fast pointer moves forward at twice the rate of the Slow pointer. Now at any point in time, if slow and fast pointer meet or point to the same node we can say a cycle was detected in the linked list.
+
+Implementation:
+
+public boolean detectCycle(Node head) {
+    if (head == null) {
+    	return false;
+    }
+
+    Node slow = head, fast = head.next;
+    while (slow != fast) {
+    	if (fast == null || fast.next == null) {
+    		return false;
+    	}
+    	slow = slow.next;
+    	fast = fast.next.next;
+    }
+    return true;
+}
+
+
+
+Time complexity of the above approach will be O(N) with space complexity as O(1).
