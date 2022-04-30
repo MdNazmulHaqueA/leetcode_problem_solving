@@ -6,6 +6,7 @@
  isSubsequnce('abc', "acb") -> false {order matters} 
  */
 
+// iterative
 function isSubsequence(str1, str2) {
    var i = 0;
    var j = 0;
