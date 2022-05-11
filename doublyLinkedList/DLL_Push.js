@@ -27,4 +27,3 @@ class DoublyLinkedList {
         return this;
     }
 }
-        
