@@ -48,7 +48,7 @@ class SinglyLinkedList{
         if(this.length === 0){
             this.tail = null;
         }
-        return currentHead;
+        return currentHead; // head that removed
     }
 }
 
