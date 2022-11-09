@@ -6,7 +6,12 @@
 //     return average;
 // };
 
-
+// var average = function(salary) {
+//    let totalSalary = salary.reduce(function(acc,val){
+//        return acc+val
+//    },0);
+//     return (totalSalary - Math.max(...salary) - Math.min(...salary))/(salary.length -2);
+// };
 
 
 var average = function(salary) {
